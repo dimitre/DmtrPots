@@ -1,0 +1,16 @@
+{
+  "name": "DmtrPots",
+  "keywords": "potentiometer",
+  "description": "Potentiometer library for Arduino / Teensy",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dimitre/DmtrPots.git"
+  },
+  "version": "0.1",
+  "exclude": [
+    "*.png",
+    "*.zip"
+  ],
+  "frameworks": "arduino",
+  "platforms": "*"
+}
