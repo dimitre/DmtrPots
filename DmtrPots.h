@@ -1,16 +1,16 @@
-// Copiado direto do Dmtr Audio
+//#define DEBUG 1 
+
 class pot {
 public:
-	//int index;
 	bool set = false;
 	uint8_t pin;
-	uint16_t val;
+	uint16_t val = 4000; //um numero arbitrario pra forcar o update no inicio do software
 	float valFloat;
 	uint8_t valByte;
 
 	int * pInt = NULL;
-	int min = 0;
-	int max = 10;
+	double min = 0;
+	double max = 10;
 	int lastVal;
 
 	float * pFloat = NULL;
@@ -20,13 +20,32 @@ public:
 
 	String name;
 
-
 	pot() {}
 	pot(uint8_t p) : pin(p) {
 		set = true;
 	}
 	uint8_t tolerance = 5;
-	//bool changed = true;
+
+	void addFloat(float * var, String n, float mi, float ma) {
+		name = n;
+		pFloat = var;
+		min = mi;
+		max = ma;
+	}
+
+	void addInt(int * var, String n, int mi, int ma) {
+		name = n;
+		pInt = var;
+		min = mi;
+		max = ma;
+	}
+
+	void addDouble(double * var, String n, int mi, int ma) {
+		name = n;
+		pDouble = var;
+		min = mi;
+		max = ma;
+	}
 
 	void update() {
 		if (set) {
@@ -52,7 +71,7 @@ public:
 				}
 
 				if (pDouble != NULL) {
-					*pDouble = map(analogRead(pin), 0, 1023, min, max);
+					*pDouble = map(analogRead(pin), 0, 1023, min * 100.0, max * 100.0) / 100.0;
 					if (lastDouble != *pDouble) {
 						Serial.println(name + " :: " + String(*pDouble));
 						lastDouble = *pDouble;
@@ -60,8 +79,7 @@ public:
 				}
 				//changed = true;
 #ifdef  DEBUG                
-				// Serial.println("Pot Changed :: PIN :: " + String(pin) + " :: " + 
-				// 	String(valFloat) + " :: " + String(valByte));
+				Serial.println("Pot Changed :: PIN :: " + String(pin) + " :: " + String(valFloat) + " :: " + String(valByte));
 #endif                
 			} else {
 				//changed = false;
@@ -69,6 +87,3 @@ public:
 		}
 	}
 };
-
-
-//pot botao1 = pot(A4);
