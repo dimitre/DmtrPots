@@ -6,15 +6,15 @@
 # Datatypes (KEYWORD1)
 #######################################
 
-DmtrPots	 KEYWORD1
-pot	 KEYWORD1
+DmtrPots	KEYWORD1
+pot	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
 
-update	 KEYWORD2
-valFloat	 KEYWORD2
+update	KEYWORD2
+valFloat	KEYWORD2
 
 #######################################
 # Instances (KEYWORD2)
